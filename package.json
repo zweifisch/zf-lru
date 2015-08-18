@@ -1,7 +1,6 @@
 {
   "name": "zf-lru",
   "version": "0.0.1",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --compilers js:coffee-script/register test.coffee --bail",
@@ -17,5 +16,6 @@
     "chai": "^3.2.0",
     "coffee-script": "^1.9.3",
     "mocha": "^2.2.5"
-  }
+  },
+  "description": ""
 }

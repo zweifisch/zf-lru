@@ -13,19 +13,33 @@ class LRU
         while node isnt @head
             [prev, next, _key, val] = node
             if _key is key
-                [last, first] = @head
+                [_, first] = @head
                 if @size > 1 and node isnt first
-                    @swap node, first
+                    @swap first, node
                 return val
             node = next
 
     swap: (n1, n2)->
-        [_, _, k1, v1] = n1
-        [_, _, k2, v2] = n2
-        n1[2] = k2
-        n1[3] = v2
-        n2[2] = k1
-        n2[3] = v1
+        if n2[0] is n1
+            [pre] = n1
+            [_, next] = n2
+            n2[0] = pre
+            pre[1] = n2
+            n2[1] = n1
+            n1[0] = n2
+            n1[1] = next
+            next[0] = n1
+        else
+            [pre1, next1] = n1
+            [pre2, next2] = n2
+            pre1[1] = n2
+            next1[0] = n2
+            pre2[1] = n1
+            next2[0] = n1
+            n2[0] = pre1
+            n2[1] = next1
+            n1[0] = pre2
+            n1[1] = next2
 
     set: (key, val)->
         if @size >= @max
